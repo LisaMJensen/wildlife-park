@@ -9,7 +9,7 @@ class Program
   private static Animal moose = new Animal ("Moose", 5, "Brown", "Male", "Agressive");
   private static Animal eagle = new Animal ("Golden Eagle", 3, "Brown", "Female", "Flying");
 
-  private static List<Animal> Animals = new List<Animal>() {deer, bear, moose, eagle};
+  public static List<Animal> Animals = new List<Animal>() {deer, bear, moose, eagle};
 
   public static void ShowAnimals()
   {
@@ -49,8 +49,27 @@ class Program
 
       Animals.Add(newAnimal);
 
-      ShowAnimals();
       Main();
+    }
+    if (answer == "N" || answer == "n")
+    {
+      Console.WriteLine("Would you like to change the condition of an animal? (Y/N)");
+      answer = Console.ReadLine();
+      if (answer == "Y" || answer == "y")
+      {
+        Console.WriteLine("Enter number for the animal you want to change the condition of:");
+        for (int i = 0; i < Animals.Count; i++)
+        {
+          Console.WriteLine(i + ": " + Animals[i].GetSpecies());
+        }
+        string id = Console.ReadLine();
+        int intId = int.Parse(id);
+        Console.WriteLine("Enter its new condition:");
+        string condition = Console.ReadLine();
+        Animals[intId].SetCondition(condition);
+
+        Main();
+      }
     }
   }
 }
